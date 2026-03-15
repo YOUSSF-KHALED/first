@@ -1,0 +1,1687 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مطعم الأصيل — طعم البيت الأصيل</title>
+    <meta
+      name="description"
+      content="مطعم الأصيل — طعم البيت الأصيل. شاورما، سندوتشات سورية، ومشويات."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #faf7f2;
+        --bg2: #ffffff;
+        --dark: #1e1a14;
+        --primary: #c47b2b;
+        --primary-l: #e09a4a;
+        --primary-pale: #fdf3e3;
+        --text: #4a4036;
+        --muted: #8c7b6b;
+        --border: #eae0d0;
+        --green: #25d366;
+        --radius-card: 14px;
+        --radius-btn: 10px;
+        --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --transition: all 0.3s ease;
+        --font: "Tajawal", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      button {
+        font-family: inherit;
+      }
+
+      .container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--dark);
+      }
+      .section-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--muted);
+        text-align: center;
+        margin-bottom: 48px;
+        font-weight: 400;
+      }
+
+      /* Animations */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        transition: var(--transition);
+      }
+      .navbar.scrolled {
+        box-shadow: var(--shadow);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 70px;
+      }
+      .nav-brand {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-brand span {
+        color: var(--dark);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .nav-links a {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+        transition: var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 5px;
+        z-index: 1001;
+      }
+      .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--dark);
+        border-radius: 3px;
+        transition: var(--transition);
+      }
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          135deg,
+          #faf7f2 0%,
+          #f5ecdd 40%,
+          #ead6bb 100%
+        );
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(196, 123, 43, 0.15),
+          transparent 70%
+        );
+        z-index: 0;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.05;
+        background-image: repeating-linear-gradient(
+          45deg,
+          var(--primary) 0,
+          var(--primary) 1px,
+          transparent 1px,
+          transparent 20px
+        );
+        z-index: 0;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 0 20px;
+        max-width: 800px;
+      }
+      .hero-tag {
+        display: inline-block;
+        background: var(--primary-pale);
+        color: var(--primary);
+        font-weight: 700;
+        padding: 8px 20px;
+        border-radius: 50px;
+        margin-bottom: 24px;
+        font-size: 1rem;
+        border: 1px solid var(--primary-l);
+      }
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text);
+        font-weight: 400;
+        margin-bottom: 40px;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 32px;
+        border-radius: var(--radius-btn);
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        text-align: center;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(196, 123, 43, 0.3);
+      }
+      .btn-primary:hover {
+        background: var(--primary-l);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(196, 123, 43, 0.4);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+      }
+      .btn-outline:hover {
+        background: var(--primary-pale);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
+
+      /* Menu Section */
+      .menu-section {
+        padding: 100px 0;
+        background: var(--bg2);
+      }
+      .menu-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+      }
+      .menu-tab {
+        padding: 12px 24px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--text);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+      .menu-tab:hover {
+        border-color: var(--primary-l);
+        color: var(--primary);
+      }
+      .menu-tab.active {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: 0 4px 15px rgba(196, 123, 43, 0.3);
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      .menu-card {
+        background: var(--bg);
+        border-radius: var(--radius-card);
+        padding: 24px;
+        border: 1px solid var(--border);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .menu-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary-l);
+      }
+      .card-header {
+        display: flex;
+        justify-content: normal;
+        align-items: flex-start;
+        margin-bottom: 16px;
+        gap: 16px;
+      }
+      .menu-emoji {
+        width: 56px;
+        height: 56px;
+        background: var(--primary-pale);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        border: 1px solid rgba(196, 123, 43, 0.2);
+        flex-shrink: 0;
+      }
+      .card-title-area {
+        flex-grow: 1;
+      }
+      .menu-card h3 {
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+      .menu-card .price {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: block;
+      }
+      .menu-card p {
+        font-size: 0.95rem;
+        color: var(--muted);
+        font-weight: 400;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+      .card-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: auto;
+      }
+      .badge-sauce {
+        background: #fce8e8;
+        color: #d32f2f;
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 50px;
+      }
+      .add-btn {
+        background: var(--bg2);
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+        padding-bottom: 2px;
+      }
+      .add-btn:hover {
+        background: var(--primary);
+        color: #fff;
+        transform: scale(1.1);
+      }
+
+      /* Order Section */
+      .order-section {
+        padding: 100px 0;
+        background: var(--bg);
+      }
+      .order-layout {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .order-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+      .order-form-card {
+        background: var(--bg2);
+        border-radius: var(--radius-card);
+        padding: 40px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+      .form-group {
+        margin-bottom: 24px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+        color: var(--dark);
+      }
+      .form-control {
+        width: 100%;
+        padding: 14px 16px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-btn);
+        font-family: var(--font);
+        font-size: 1rem;
+        background: var(--bg);
+        transition: var(--transition);
+        outline: none;
+      }
+      .form-control:focus {
+        border-color: var(--primary);
+        background: var(--bg2);
+      }
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Sauce Toggles */
+      .sauces-toggles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .sauce-toggle {
+        cursor: pointer;
+        user-select: none;
+      }
+      .sauce-toggle input {
+        display: none;
+      }
+      .sauce-toggle span {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+        transition: var(--transition);
+      }
+      .sauce-toggle input:checked + span {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+        box-shadow: 0 4px 12px rgba(196, 123, 43, 0.3);
+      }
+
+      /* Form Success & Submit */
+      .btn-submit {
+        width: 100%;
+        font-size: 1.1rem;
+        padding: 16px;
+        margin-top: 10px;
+      }
+      .success-msg {
+        display: none;
+        background: #e8f5e9;
+        border: 2px solid #a5d6a7;
+        color: #2e7d32;
+        padding: 20px;
+        border-radius: var(--radius-card);
+        text-align: center;
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-top: 20px;
+      }
+
+      /* Order Info Sidebar */
+      .info-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .whatsapp-big-btn {
+        background: var(--green);
+        color: #fff;
+        padding: 24px;
+        border-radius: var(--radius-card);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 12px;
+        transition: var(--transition);
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+      }
+      .whatsapp-big-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+      }
+      .whatsapp-big-btn svg {
+        width: 48px;
+        height: 48px;
+        fill: currentColor;
+      }
+      .whatsapp-big-btn span:first-of-type {
+        font-size: 1.4rem;
+        font-weight: 800;
+      }
+      .whatsapp-big-btn span:last-of-type {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+
+      .status-card {
+        background: var(--bg2);
+        border-radius: var(--radius-card);
+        padding: 30px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+      }
+      .status-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .status-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .status-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .status-item strong {
+        font-weight: 800;
+        color: var(--dark);
+      }
+      .status-item span {
+        color: var(--muted);
+        font-weight: 700;
+      }
+
+      /* QR Section */
+      .qr-section {
+        padding: 100px 0;
+        background: var(--bg2);
+        text-align: center;
+      }
+      .qr-container {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .qr-grid {
+        width: 220px;
+        height: 220px;
+        background: #fff;
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        gap: 2px;
+      }
+      .qr-grid div {
+        background: #fff;
+        border-radius: 2px;
+      }
+      .qr-grid div.b {
+        background: #000;
+      }
+      .qr-text {
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--dark);
+      }
+
+      /* Info Strip */
+      .info-strip {
+        background: var(--dark);
+        padding: 60px 0;
+        color: #fff;
+      }
+      .info-strip-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+      }
+      .info-box {
+        text-align: center;
+      }
+      .info-box-icon {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+      }
+      .info-box h4 {
+        color: var(--primary-l);
+        font-size: 1.2rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .info-box p {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      /* Footer */
+      .footer {
+        background: #15120e;
+        padding: 40px 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .socials {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .social-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      .social-btn:hover {
+        background: var(--primary);
+        transform: translateY(-3px);
+      }
+      .social-btn svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+      }
+      .footer p {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+
+      /* Fixed WhatsApp Float */
+      .wa-float {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        width: 64px;
+        height: 64px;
+        background: var(--green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        box-shadow: 0 4px 24px rgba(37, 211, 102, 0.4);
+        animation: pulse 2s infinite;
+        transition: var(--transition);
+      }
+      .wa-float:hover {
+        transform: scale(1.1);
+      }
+      .wa-float svg {
+        width: 34px;
+        height: 34px;
+        fill: #fff;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+      }
+
+      #order-summary {
+        background: var(--bg);
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        margin-top: 0.75rem;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from { opacity:0; transform:translateY(-6px); }
+        to   { opacity:1; transform:translateY(0); }
+      }
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: var(--text);
+        padding: 0.3rem 0;
+      }
+      .summary-item-price { font-weight:700; color:var(--primary); }
+      .summary-delivery {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.82rem;
+        border-top: 1px dashed var(--border);
+        padding-top: 0.5rem;
+        margin-top: 0.3rem;
+      }
+      .summary-total {
+        display: flex;
+        justify-content: space-between;
+        border-top: 2px solid var(--border);
+        margin-top: 0.5rem;
+        padding-top: 0.6rem;
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--dark);
+      }
+      #total-price { color: var(--primary); font-size:1.1rem; }
+
+      /* Responsive */
+      #show-more-btn:hover {
+        background: var(--primary) !important;
+        color: #fff !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 24px rgba(196, 123, 43, 0.25) !important;
+      }
+      @media (max-width: 768px) {
+        .nav-links {
+          position: fixed;
+          top: 70px;
+          right: -100%;
+          width: 100%;
+          height: calc(100vh - 70px);
+          background: var(--bg2);
+          flex-direction: column;
+          align-items: center;
+          padding-top: 40px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+          transition: right 0.3s ease;
+          gap: 30px;
+        }
+        .nav-links.open {
+          right: 0;
+        }
+        .nav-links a {
+          font-size: 1.2rem;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+        .hero p {
+          font-size: 1rem;
+        }
+        .info-strip-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .menu-tabs {
+          gap: 8px;
+        }
+        .menu-tab {
+          padding: 8px 16px;
+          font-size: 0.9rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.4rem;
+        }
+        .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+      <div class="container nav-inner">
+        <div class="nav-brand">🍽️ <span>الأصيل</span></div>
+        <nav>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#menu" class="nav-item">القائمة</a></li>
+            <li><a href="#order" class="nav-item">اطلب الآن</a></li>
+            <li><a href="#contact" class="nav-item">تواصل</a></li>
+          </ul>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content fade-up">
+        <div class="hero-tag">✦ طعم البيت الأصيل ✦</div>
+        <h1>مطعم الأصيل</h1>
+        <p>
+          أشهى أطباق الشاورما والسندوتشات السورية والمشويات المحضرة بأجود
+          المكونات الطازجة والتوابل الأصلية.
+        </p>
+        <div class="hero-buttons">
+          <a href="#order" class="btn btn-primary">اطلب الآن</a>
+          <a href="#menu" class="btn btn-outline">شوف القائمة</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <!-- Menu Data embedded in JS below to render cards dynamically -->
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <h2 class="section-title fade-up">قائمة الطعام</h2>
+        <p class="section-subtitle fade-up">
+          اختار اللي يعجبك وضيفه لطلبك بضغطة زر
+        </p>
+
+        <div class="menu-tabs fade-up" id="menuTabs">
+          <button class="menu-tab active" data-filter="all">الكل</button>
+          <button class="menu-tab" data-filter="shawarma">🌯 شاورما</button>
+          <button class="menu-tab" data-filter="syrian">
+            🥪 سندوتشات سوري
+          </button>
+          <button class="menu-tab" data-filter="grills">🔥 مشويات</button>
+          <button class="menu-tab" data-filter="drinks">🥤 مشروبات</button>
+          <button class="menu-tab" data-filter="sauces">🫙 صوصات</button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+          <!-- Generated by JS -->
+        </div>
+        <button id="show-more-btn" style="display: none; margin: 1.5rem auto 0; background: transparent; border: 2px solid var(--primary); color: var(--primary); font-family: 'Tajawal', sans-serif; font-size: 0.95rem; font-weight: 700; padding: 0.8rem 2.5rem; border-radius: 10px; cursor: pointer; transition: all 0.3s ease; letter-spacing: 0.02em;"></button>
+      </div>
+    </section>
+
+    <!-- Order -->
+    <section class="order-section" id="order">
+      <div class="container">
+        <h2 class="section-title fade-up">اطلب دلوقتي</h2>
+        <p class="section-subtitle fade-up">
+          واملأ بياناتك وهنوصلك في أسرع وقت
+        </p>
+
+        <div class="order-layout fade-up">
+          <!-- Form Column -->
+          <div class="order-form-card">
+            <form id="orderForm">
+              <div class="form-group">
+                <label for="fName">الاسم</label>
+                <input
+                  type="text"
+                  id="fName"
+                  class="form-control"
+                  required
+                  placeholder="اسمك الكريم"
+                />
+              </div>
+              <div class="form-group">
+                <label for="fPhone">رقم الموبايل</label>
+                <input
+                  type="tel"
+                  id="fPhone"
+                  class="form-control"
+                  required
+                  placeholder="01X-XXXX-XXXX"
+                />
+              </div>
+              <div class="form-group">
+                <label for="fArea">📍 اختار منطقتك</label>
+                <select
+                  id="fArea"
+                  class="form-control"
+                  required
+                  style="background: var(--bg); border: 2px solid var(--border); border-radius: 10px; font-family: 'Tajawal', sans-serif; direction: rtl; padding: 0.75rem 1rem;"
+                >
+                  <option value="" disabled selected>-- اختار المنطقة --</option>
+                  <option value="الشعبية">الشعبية</option>
+                  <option value="الشون">الشون</option>
+                  <option value="المشحمة">المشحمة</option>
+                  <option value="أبو شاهين">أبو شاهين</option>
+                  <option value="محب">محب</option>
+                </select>
+                <div style="display: inline-flex; background: #FDF3E3; border: 1px solid rgba(196,123,43,0.25); color: #C47B2B; font-size: 0.82rem; font-weight: 700; padding: 0.4rem 0.9rem; border-radius: 8px; margin-top: 0.4rem;">
+                  🚗 رسوم التوصيل: ٥٠ جنيه لأي منطقة
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fAddress">العنوان</label>
+                <input
+                  type="text"
+                  id="fAddress"
+                  class="form-control"
+                  required
+                  placeholder="العنوان بالتفصيل"
+                />
+              </div>
+              <div class="form-group">
+                <label for="f-order">الطلب (اضغط + من القائمة للإضافة)</label>
+                <textarea
+                  id="f-order"
+                  class="form-control"
+                  required
+                  placeholder="تفاصيل طلبك هنا..."
+                ></textarea>
+
+                <div id="order-summary" style="display:none;">
+                  <div id="summary-rows"></div>
+                  <div class="summary-delivery">
+                    <span>🚗 رسوم التوصيل</span>
+                    <span>٥٠ جنيه</span>
+                  </div>
+                  <div class="summary-total">
+                    <span>الإجمالي</span>
+                    <span id="total-price">٠ جنيه</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>إضافات الصوص (اختياري)</label>
+                <div class="sauces-toggles">
+                  <label class="sauce-toggle"
+                    ><input type="checkbox" name="sauce" value="ثوم" /><span
+                      >ثوم</span
+                    ></label
+                  >
+                  <label class="sauce-toggle"
+                    ><input type="checkbox" name="sauce" value="حار" /><span
+                      >حار</span
+                    ></label
+                  >
+                  <label class="sauce-toggle"
+                    ><input type="checkbox" name="sauce" value="طحينة" /><span
+                      >طحينة</span
+                    ></label
+                  >
+                  <label class="sauce-toggle"
+                    ><input type="checkbox" name="sauce" value="كتشاب" /><span
+                      >كتشاب</span
+                    ></label
+                  >
+                  <label class="sauce-toggle"
+                    ><input type="checkbox" name="sauce" value="مايونيز" /><span
+                      >مايونيز</span
+                    ></label
+                  >
+                  <label class="sauce-toggle"
+                    ><input type="checkbox" name="sauce" value="بيستو" /><span
+                      >بيستو</span
+                    ></label
+                  >
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="fNotes">ملاحظات إضافية</label>
+                <input
+                  type="text"
+                  id="fNotes"
+                  class="form-control"
+                  placeholder="أي طلبات خاصة؟ (بدون بصل، اكسترا شطة...)"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit">
+                إرسال الطلب
+              </button>
+            </form>
+            <div id="successMsg" class="success-msg">
+              ✅ تم إرسال طلبك بنجاح! هنتواصل معاك فوراً لتأكيد الطلب.
+            </div>
+          </div>
+
+          <!-- Info Column -->
+          <div class="info-sidebar">
+            <a
+              href="https://wa.me/201000000000"
+              target="_blank"
+              class="whatsapp-big-btn"
+            >
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
+              </svg>
+              <span>اطلب عبر واتساب</span>
+              <span>تواصل مباشر للطلبات السريعة</span>
+            </a>
+
+            <div class="status-card">
+              <div class="status-list">
+                <div class="status-item">
+                  <strong>وقت التوصيل</strong>
+                  <span>٤٥ - ٦٠ دقيقة</span>
+                </div>
+                <div class="status-item">
+                  <strong>الحد الأدنى</strong>
+                  <span>١٠٠ جنيه</span>
+                </div>
+                <div class="status-item" style="flex-direction: column; align-items: start; gap: 8px;">
+                  <span style="font-weight: 700;">✅ رسوم التوصيل ٥٠ جنيه لأي منطقة</span>
+                </div>
+                <div class="status-item" style="flex-direction: column; align-items: start; gap: 8px; border-bottom: none; padding-bottom: 0;">
+                  <span style="font-weight: 700;">✅ المناطق المتاحة: الشعبية، الشون، المشحمة، أبو شاهين، محب</span>
+                </div>
+                <div class="status-item">
+                  <strong>ساعات العمل</strong>
+                  <span>١٢ ظ - ٢ ص</span>
+                </div>
+                <div class="status-item">
+                  <strong>الدفع</strong>
+                  <span>كاش عند الاستلام</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QR Section -->
+    <section class="qr-section">
+      <div class="container fade-up">
+        <div class="qr-container">
+          <!-- Pure CSS QR Grid 9x9 -->
+          <div class="qr-grid">
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+            <div></div>
+            <div class="b"></div>
+          </div>
+          <div class="qr-text">امسح الكود وشارك المطعم مع أصحابك</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info Strip -->
+    <section class="info-strip" id="contact">
+      <div class="container">
+        <div class="info-strip-grid fade-up">
+          <div class="info-box">
+            <div class="info-box-icon">📍</div>
+            <h4>العنوان</h4>
+            <p> — المحلة الكبري،</p>
+          </div>
+                    <div class="info-box">
+            <div class="info-box-icon">⏰</div>
+            <h4>أوقات العمل</h4>
+            <p>يومياً ١٢ ظهراً — ٢ صباحاً</p>
+          </div>
+          <div class="info-box">
+            <div class="info-box-icon">📞</div>
+            <h4>اتصل بنا</h4>
+            <p dir="ltr">01x-xxxx-xxxx</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="socials">
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="TikTok">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+              />
+            </svg>
+          </a>
+        </div>
+        <p>جميع الحقوق محفوظة © مطعم الأصيل ٢٠٢٤</p>
+        <p>Design By Yousef.dev</p>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a
+      href="https://wa.me/201000000000"
+      target="_blank"
+      class="wa-float"
+      aria-label="WhatsApp"
+    >
+      <svg viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+        />
+      </svg>
+    </a>
+
+    <script>
+      // Data
+      const menuData = [
+        // SHAWARMA
+        {
+          id: "sh1",
+          cat: "shawarma",
+          emoji: "🍗",
+          name: "شاورما دجاج",
+          desc: "دجاج متبّل مشوي مع خضار وصوص الثوم في خبز عربي",
+          price: "٥٥",
+          sauce: true,
+        },
+        {
+          id: "sh2",
+          cat: "shawarma",
+          emoji: "🥩",
+          name: "شاورما لحمة",
+          desc: "لحم بتلو مشوي ناعم مع طرشي وصوص خاص",
+          price: "٦٥",
+          sauce: true,
+        },
+        {
+          id: "sh3",
+          cat: "shawarma",
+          emoji: "🌯",
+          name: "شاورما ميكس",
+          desc: "دجاج ولحمة مع كل الإضافات",
+          price: "٧٠",
+          sauce: true,
+        },
+        {
+          id: "sh4",
+          cat: "shawarma",
+          emoji: "🥙",
+          name: "شاورما بيضاء",
+          desc: "دجاج مع مايونيز وجبنة وخيار",
+          price: "٦٠",
+          sauce: true,
+        },
+        // SYRIAN
+        {
+          id: "sy1",
+          cat: "syrian",
+          emoji: "🥪",
+          name: "سندوتش كباب سوري",
+          desc: "كباب لحم بهارات سورية مع بصل وبقدونس وطحينة",
+          price: "٦٠",
+          sauce: true,
+        },
+        {
+          id: "sy2",
+          cat: "syrian",
+          emoji: "🌭",
+          name: "سندوتش كفتة",
+          desc: "كفتة مشوية طازة مع صوص الثوم والخضار",
+          price: "٥٠",
+          sauce: true,
+        },
+        {
+          id: "sy3",
+          cat: "syrian",
+          emoji: "🧆",
+          name: "سندوتش فلافل سوري",
+          desc: "فلافل سورية بالأعشاب مع سلطة وطحينة",
+          price: "٣٥",
+          sauce: true,
+        },
+        {
+          id: "sy4",
+          cat: "syrian",
+          emoji: "🍢",
+          name: "سندوتش شيش طاووق",
+          desc: "صدر دجاج متبّل وحامض على الفحم",
+          price: "٦٥",
+          sauce: true,
+        },
+        // GRILLS
+        {
+          id: "gr1",
+          cat: "grills",
+          emoji: "🔥",
+          name: "مشكل مشويات",
+          desc: "كباب + كفتة + شيش طاووق مع خبز بلدي وسلطة",
+          price: "١٤٠",
+          sauce: false,
+        },
+        {
+          id: "gr2",
+          cat: "grills",
+          emoji: "🍗",
+          name: "نصف فرخة مشوية",
+          desc: "فرخة على الفحم بتتبيلة البيت مع توم وخبز",
+          price: "١١٠",
+          sauce: false,
+        },
+        {
+          id: "gr3",
+          cat: "grills",
+          emoji: "🍖",
+          name: "كباب بلدي",
+          desc: "لحم بلدي تقيل بهارات الجد على الفحم",
+          price: "٩٠",
+          sauce: false,
+        },
+        {
+          id: "gr4",
+          cat: "grills",
+          emoji: "♨️",
+          name: "سيخ كفتة",
+          desc: "كفتة لحم بتلو نارية جنب السلطة البلدية",
+          price: "٨٠",
+          sauce: false,
+        },
+        // DRINKS
+        {
+          id: "dr1",
+          cat: "drinks",
+          emoji: "🥭",
+          name: "عصير مانجو طازة",
+          desc: "مانجو تازة ١٠٠٪ بدون إضافات",
+          price: "٣٥",
+          sauce: false,
+        },
+        {
+          id: "dr2",
+          cat: "drinks",
+          emoji: "🍋",
+          name: "ليموناضة نعناع",
+          desc: "ليمون طازة مع نعناع",
+          price: "٣٠",
+          sauce: false,
+        },
+        {
+          id: "dr3",
+          cat: "drinks",
+          emoji: "🍐",
+          name: "عصير جوافة",
+          desc: "جوافة طبيعية كثيفة",
+          price: "٢٨",
+          sauce: false,
+        },
+        {
+          id: "dr4",
+          cat: "drinks",
+          emoji: "🍵",
+          name: "شاي بالنعناع",
+          desc: "شاي أحمر بنكهة النعناع",
+          price: "١٥",
+          sauce: false,
+        },
+        {
+          id: "dr5",
+          cat: "drinks",
+          emoji: "🥤",
+          name: "ميلك شيك شوكولاتة",
+          desc: "ميلك شيك كثيف بكريمة طازة",
+          price: "٤٥",
+          sauce: false,
+        },
+        // SAUCES
+        {
+          id: "sa1",
+          cat: "sauces",
+          emoji: "🧄",
+          name: "صوص ثوم البيت",
+          desc: "كريمة ثوم بيضاء مركّزة",
+          price: "١٠",
+          sauce: false,
+        },
+        {
+          id: "sa2",
+          cat: "sauces",
+          emoji: "🌶️",
+          name: "صوص حار سوري",
+          desc: "فلفل حار مع بهارات سورية",
+          price: "١٠",
+          sauce: false,
+        },
+        {
+          id: "sa3",
+          cat: "sauces",
+          emoji: "🥣",
+          name: "طحينة أصيلة",
+          desc: "طحينة ناعمة مع الليمون والثوم",
+          price: "١٠",
+          sauce: false,
+        },
+        {
+          id: "sa4",
+          cat: "sauces",
+          emoji: "🍅",
+          name: "صوص كتشاب حار",
+          desc: "كتشاب مع توابل البيت",
+          price: "٨",
+          sauce: false,
+        },
+        {
+          id: "sa5",
+          cat: "sauces",
+          emoji: "🥚",
+          name: "مايونيز ثوم",
+          desc: "مايو ناعم بنكهة الثوم الخفيفة",
+          price: "٨",
+          sauce: false,
+        },
+        {
+          id: "sa6",
+          cat: "sauces",
+          emoji: "🌿",
+          name: "بيستو الأعشاب",
+          desc: "أعشاب طازة مع زيت الزيتون",
+          price: "١٢",
+          sauce: false,
+        },
+      ];
+
+      // Render Menu
+      const menuGrid = document.getElementById("menuGrid");
+      const showMoreBtn = document.getElementById("show-more-btn");
+      let menuExpanded = false;
+
+      function renderMenu(filter) {
+        menuGrid.innerHTML = "";
+        let filtered =
+          filter === "all"
+            ? menuData
+            : menuData.filter((i) => i.cat === filter);
+
+        if (filter === "all") {
+          if (!menuExpanded) {
+            const remainingCount = filtered.length - 6;
+            filtered = filtered.slice(0, 6);
+            if (remainingCount > 0) {
+              showMoreBtn.innerText = `🍽️ شوف باقي القائمة كاملة (${remainingCount} طبق باقي)`;
+              showMoreBtn.style.display = "block";
+            } else {
+              showMoreBtn.style.display = "none";
+            }
+          } else {
+            showMoreBtn.innerText = "▲ تقليل القائمة";
+            showMoreBtn.style.display = "block";
+          }
+        } else {
+          showMoreBtn.style.display = "none";
+        }
+
+        filtered.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "menu-card fade-up visible";
+          card.style.opacity = "0";
+          card.style.transform = "translateY(10px)";
+          card.style.transition = "opacity 0.3s, transform 0.3s";
+          card.innerHTML = `
+      <div class="card-header">
+        <div class="menu-emoji">${item.emoji}</div>
+        <div class="card-title-area">
+          <h3>${item.name}</h3>
+          <span class="price">${item.price} جنيه</span>
+        </div>
+      </div>
+      <p>${item.desc}</p>
+      <div class="card-actions">
+        ${item.sauce ? '<span class="badge-sauce">صوص اختياري</span>' : "<span></span>"}
+        <button class="add-btn" onclick="addToOrder('${item.name}', '${item.price}')" aria-label="إضافة للطلب">+</button>
+      </div>
+    `;
+          menuGrid.appendChild(card);
+          
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            });
+          });
+        });
+      }
+
+      showMoreBtn.addEventListener("click", () => {
+        menuExpanded = !menuExpanded;
+        if (menuExpanded) {
+          renderMenu('all');
+        } else {
+          renderMenu('all');
+          document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+
+      // Init
+      renderMenu("all");
+
+      // Tabs logic
+      const tabs = document.querySelectorAll(".menu-tab");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const filter = tab.dataset.filter;
+          if (filter !== "all") {
+            menuExpanded = false;
+          }
+          renderMenu(filter);
+        });
+      });
+
+      // Add to Order Textarea
+      const orderArea = document.getElementById("f-order");
+      window.addToOrder = function (name, price) {
+        const currentText = orderArea.value;
+        const newItem = `- ${name} (${price} جنيه)\n`;
+        orderArea.value = currentText + newItem;
+        // Flash effect on textarea
+        orderArea.style.borderColor = "var(--primary)";
+        orderArea.style.background = "var(--primary-pale)";
+        setTimeout(() => {
+          orderArea.style.borderColor = "var(--border)";
+          orderArea.style.background = "var(--bg)";
+        }, 300);
+      };
+
+      // Navbar scroll & Hamburger
+      const navbar = document.getElementById("navbar");
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      const navItems = document.querySelectorAll(".nav-item");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) navbar.classList.add("scrolled");
+        else navbar.classList.remove("scrolled");
+      });
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("open");
+      });
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navLinks.classList.remove("open");
+        });
+      });
+
+      // Fade-up Observer
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+
+      // Form submit
+      const form = document.getElementById("orderForm");
+      const msg = document.getElementById("successMsg");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fArea = document.getElementById("fArea");
+        if (!fArea || !fArea.value) {
+          alert("⚠️ من فضلك اختار منطقة التوصيل");
+          return;
+        }
+        form.style.display = "none";
+        msg.style.display = "block";
+      });
+
+      function convertArabicNum(str) {
+        return String(str).replace(/[٠-٩]/g, function(d) {
+          return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);
+        });
+      }
+
+      function toArabicNum(n) {
+        return String(n).replace(/\d/g, function(d) {
+          return '٠١٢٣٤٥٦٧٨٩'[d];
+        });
+      }
+
+      function calcOrder() {
+        var textarea = document.getElementById('f-order');
+        var summaryBox = document.getElementById('order-summary');
+        var summaryRows = document.getElementById('summary-rows');
+        var totalEl = document.getElementById('total-price');
+
+        if (!textarea || !summaryBox) return;
+
+        var text = textarea.value;
+        var lines = text.split('\n').filter(function(l) {
+          return l.trim() !== '';
+        });
+
+        var rows = [];
+        var subtotal = 0;
+
+        lines.forEach(function(line) {
+          menuData.forEach(function(item) {
+            if (line.indexOf(item.name) !== -1) {
+              var qtyMatch = line.match(/[×x]\s*([٠-٩0-9]+)/);
+              var qty = 1;
+              if (qtyMatch) {
+                qty = parseInt(convertArabicNum(qtyMatch[1])) || 1;
+              }
+              var priceClean = convertArabicNum(item.price).replace(/[^0-9]/g, '');
+              var price = parseInt(priceClean) || 0;
+              var lineTotal = price * qty;
+              subtotal += lineTotal;
+              rows.push({ name: item.name, qty: qty, total: lineTotal });
+            }
+          });
+        });
+
+        if (rows.length === 0) {
+          summaryBox.style.display = 'none';
+          return;
+        }
+
+        summaryBox.style.display = 'block';
+
+        summaryRows.innerHTML = rows.map(function(r) {
+          return '<div class="summary-row">' +
+            '<span>' + r.name + ' × ' + toArabicNum(r.qty) + '</span>' +
+            '<span class="summary-item-price">' + toArabicNum(r.total) + ' جنيه</span>' +
+            '</div>';
+        }).join('');
+
+        var grandTotal = subtotal + 50;
+        totalEl.textContent = toArabicNum(grandTotal) + ' جنيه';
+      }
+
+      document.getElementById('f-order').addEventListener('input', calcOrder);
+      calcOrder();
+    </script>
+  </body>
+</html>
